@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+  <h2>Your Review History 🧠</h2>
+  {% if records %}
+  <table class="table table-bordered mt-3">
+    <thead>
+      <tr>
+        <th>Review Text</th>
+        <th>Prediction</th>
+        <th>Real %</th>
+        <th>Fake %</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for record in records %}
+      <tr>
+        <td>{{ record.review_text }}</td>
+        <td>{{ record.prediction }}</td>
+        <td>{{ record.real_confidence }}</td>
+        <td>{{ record.fake_confidence }}</td>
+        <td>{{ record.created_at|date:"Y-m-d H:i" }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p>No reviews analyzed yet.</p>
+  {% endif %}
+</div>
+{% endblock %}
